@@ -107,6 +107,7 @@ export default {
    };
   },
   methods:{
+
     Api: function(command){
       let arg = command.substring(7,8)
       switch(command.substring(0,6))
@@ -151,39 +152,33 @@ export default {
       this.pers2.pos.left = cor2.left+'px'
     },
 
-    addshg: function() {
-    if(this.pers.direction == 0){
-      this.pers.cor.y++
-    }
-    else if(this.pers.direction == 1){
-      this.pers.cor.x++
-    }
-    else if(this.pers.direction == 2){
-      this.pers.cor.y--
-    }
-    else if(this.pers.direction == 3){
-      this.pers.cor.x--
-    }
-    else{
-      return
+    addshg: function(id) {
+      id
+      // this.rotate('l')
+      if(this["pers"+id].direction == 0){
+        this["pers"+id].cor.y++
+      }
+      else if(this["pers"+id].direction == 1){
+        this["pers"+id].cor.x++
+      }
+      else if(this["pers"+id].direction == 2){
+        this["pers"+id].cor.y--
+      }
+      else if(this["pers"+id].direction == 3){
+        this["pers"+id].cor.x--
+      }
+      else{
+        return;
     }
 
     this.setcoor()
   },
 	rotate: function(dir){
-<<<<<<< HEAD
 		if(dir == 'l'){
 			this.pers.direction = (this.pers.direction == 0)? 3 : (this.pers.direction-1) % 4
 		}
 		else if(dir == 'r'){
 			this.pers.direction = Math.abs((this.pers.direction +1) % 4)
-=======
-		if(dir == 'left' || dir == 'l'){
-			this.pers1.direction = (this.pers1.direction == 0)? 3 : (this.pers1.direction-1) % 4
-		}
-		else if(dir == 'right' || dir == 'r'){
-			this.pers1.direction = Math.abs((this.pers1.direction +1) % 4)
->>>>>>> 64c95b79e27e6edfc0c6c98ff9e5fb2090940544
 		}
 		else{
 			return;
