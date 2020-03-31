@@ -33,11 +33,11 @@ export default {
     }
   },
   watch: {
-        Step: function(val)
-		{
-          this.Api('makestep()')
-          console.log(val)
-        }
+    Step: function(val){
+      val
+      this.Api('makestep()')
+      // console.log(val)
+    }
   },
 }
 </script>

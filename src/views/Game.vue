@@ -35,6 +35,10 @@
 								<img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
 							</div>
 
+              <div :class="'pers '+  pers2.animated" :style=pers2.pos >
+                <img src="/res/sprites/characters/biker/bike_aim.png" class="w-100 " alt="">
+              </div>
+
 							<div class="row ">
 								<div class="col">
 									<hr class="mb-1 elegant-color-dark">
@@ -95,7 +99,7 @@ export default {
     this.addtables()
   },
   mounted: function() {
-    this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
+    this.setcoor()
     // this.pers.animated.push("anim")
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
@@ -123,13 +127,16 @@ export default {
       };
 
     },
-    setcoor: function(id) {
-      let cor = this.getCoords(document.getElementById(id))
-      this.pers.pos.top = cor.top+'px'
-      this.pers.pos.left = cor.left+'px'
+    setcoor: function() {
+      let cor1 = this.getCoords(document.getElementById("x"+this.pers.cor.x+"y"+this.pers.cor.y))
+      let cor2 = this.getCoords(document.getElementById("x"+this.pers2.cor.x+"y"+this.pers2.cor.y))
+      this.pers.pos.top = cor1.top+'px'
+      this.pers.pos.left = cor1.left+'px'
+      this.pers2.pos.top = cor2.top+'px'
+      this.pers2.pos.left = cor2.left+'px'
     },
     addshg: function() {
-      this.rotate('l')
+      // this.rotate('l')
       if(this.pers.direction == 0){
         this.pers.cor.y++
       }
@@ -146,7 +153,7 @@ export default {
         return;
     }
 
-    this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
+    this.setcoor()
   },
 	rotate: function(dir){
 		if(dir == 'left' || dir == 'l'){
@@ -177,11 +184,24 @@ export default {
             	  */
                 direction: 0,
               },
+              pers2: {
+                animated: ["anim"],
+                cor:{'x': 8, 'y': 8},
+                pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
+                  /*
+                direction = 0 -> look right
+                direction = 1 -> look bottom
+                direction = 2 -> look left
+                direction = 3 -> look look top
+                */
+                direction: 0,
+              },
               x: 17,
               y: 17,
               tables: [],
               List: '',
               step: 0,
+
               // Api: {
               //   makestep: this.addshg(),
               // },
@@ -190,11 +210,11 @@ export default {
   watch: {
     windowHeight: function (val) {
       val
-      this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
+      this.setcoor()
     },
     windowWidth: function (val) {
       val
-      this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
+      this.setcoor()
     }
   }
 }
