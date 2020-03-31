@@ -4,7 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/game">Game</router-link>
     </div> -->
-    <router-view/>
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 

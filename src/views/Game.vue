@@ -98,7 +98,8 @@ export default {
     this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
     // this.pers.animated.push("anim")
     window.onresize = () => {
-     this.windowWidth = window.innerWidth;
+      this.windowWidth = window.innerWidth;
+      this.windowHeight = window.innerHeight;
    };
   },
   methods:{
@@ -163,6 +164,7 @@ export default {
   data: ()=>{
     return {
               windowWidth: window.innerWidth,
+              windowHeight: window.innerHeight,
               pers: {
                 animated: ["anim"],
                 cor:{'x': 2, 'y': 2},
@@ -186,6 +188,10 @@ export default {
               }
   },
   watch: {
+    windowHeight: function (val) {
+      val
+      this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
+    },
     windowWidth: function (val) {
       val
       this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
