@@ -108,6 +108,7 @@ export default {
   },
   methods:{
     Api: function(command){
+      let arg = command.substring(7,8)
       switch(command.substring(0,6))
       {
       case 'makest':
@@ -115,8 +116,11 @@ export default {
         break;
 
       case 'rotate':
-      
+      if(arg=='r'){ this.rotate('r') }
+      else if(arg=='l'){ this.rotate('l') }
+      else return
       break;
+
       default:
         return
       }
@@ -166,10 +170,10 @@ export default {
     this.setcoor()
   },
 	rotate: function(dir){
-		if(dir == 'left' || dir == 'l'){
+		if(dir == 'l'){
 			this.pers.direction = (this.pers.direction == 0)? 3 : (this.pers.direction-1) % 4
 		}
-		else if(dir == 'right' || dir == 'r'){
+		else if(dir == 'r'){
 			this.pers.direction = Math.abs((this.pers.direction +1) % 4)
 		}
 		else{
@@ -211,10 +215,6 @@ export default {
               tables: [],
               List: '',
               step: 0,
-
-              // Api: {
-              //   makestep: this.addshg(),
-              // },
             }
   },
   watch: {
