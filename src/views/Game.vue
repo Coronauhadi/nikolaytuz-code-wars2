@@ -126,7 +126,6 @@ export default {
       this.pers.pos.left = cor.left+'px'
     },
     "addshg": function() {
-		this.rotate('l')
     if(this.pers.direction == 0){
       this.pers.cor.y++
     }
