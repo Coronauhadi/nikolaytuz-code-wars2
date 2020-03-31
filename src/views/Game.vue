@@ -119,7 +119,7 @@ export default {
       if(arg=='r'){ this.rotate('r') }
       else if(arg=='l'){ this.rotate('l') }
       else return
-      break;
+      break
 
       default:
         return
