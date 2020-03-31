@@ -5,10 +5,10 @@
 					<div class="col-4 p-0 " style="height:100vh;">
 							<textarea v-model='List' id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!">
 							</textarea>
-							<button type="button" class="sub" @click="execute()" name="button">√</button>
+							<button type="button" class="sub" @click="step++" name="button">√</button>
 					</div>
 
-          <Iterator List1='List' API='API' Step='step'/>
+          <Iterator :List1='List' :Api="Api" :Step='step'/>
 
 					<div class="col-8 ">
 						<div class="">
@@ -103,7 +103,10 @@ export default {
    };
   },
   methods:{
-    "addtables": function() {
+    Api: function(comand) {
+      comand=="makestep()"?this.addshg():''
+    },
+    addtables: function() {
       for (var i = 0; i < this.y; i++) {
         let a = []
         for (var j = 0; j < this.y; j++) {
@@ -112,7 +115,7 @@ export default {
         this.tables.push(a)
       }
     },
-    "getCoords": function(elem) {
+    getCoords: function(elem) {
       var box = elem.getBoundingClientRect();
       return  {
         top: box.top + pageYOffset,
@@ -120,11 +123,12 @@ export default {
       };
 
     },
-    "setcoor": function(id) {
+    setcoor: function(id) {
       let cor = this.getCoords(document.getElementById(id))
       this.pers.pos.top = cor.top+'px'
       this.pers.pos.left = cor.left+'px'
     },
+<<<<<<< HEAD
     "addshg": function() {
     if(this.pers.direction == 0){
       this.pers.cor.y++
@@ -144,7 +148,7 @@ export default {
 
     this.setcoor("x"+this.pers.cor.x+"y"+this.pers.cor.y)
   },
-	"rotate": function(dir){
+	rotate: function(dir){
 		if(dir == 'left' || dir == 'l'){
 			this.pers.direction = (this.pers.direction == 0)? 3 : (this.pers.direction-1) % 4
 		}
@@ -156,9 +160,6 @@ export default {
 		}
 		this.pers.pos.transform = 'rotate(' + String(Math.round(this.pers.direction * 90)) + 'deg)'
 	},
-	"execute": function(){
-		
-	},
   },
   data: ()=>{
     return {
@@ -168,23 +169,23 @@ export default {
                 animated: ["anim"],
                 cor:{'x': 2, 'y': 2},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
-                /*
-          	  direction = 0 -> look right
-          	  direction = 1 -> look bottom
-          	  direction = 2 -> look left
-          	  direction = 3 -> look look top
-          	  */
-              direction: 0,
+                  /*
+            	  direction = 0 -> look right
+            	  direction = 1 -> look bottom
+            	  direction = 2 -> look left
+            	  direction = 3 -> look look top
+            	  */
+                direction: 0,
               },
               x: 17,
               y: 17,
               tables: [],
               List: '',
               step: 0,
-              API: {
-                  makestep: this.addshg(), 
-              },
-              }
+              // Api: {
+              //   makestep: this.addshg(),
+              // },
+            }
   },
   watch: {
     windowHeight: function (val) {

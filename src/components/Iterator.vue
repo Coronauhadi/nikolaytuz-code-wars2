@@ -11,20 +11,20 @@ export default {
      Step: Number,
      List1: String,
      List2: String,
-     API: Object,
+     Api: Function,
   },
   methods: {
-	"prepareList": function(){
-		this.MyList = this.List1.split('\n')
-		this.ExternalList = this.List2.split('\n')
-	},
-	"getter": function(){
-		return this.Ret()
-	},
-	
-	"getlog": function(){
-		console.log(this.List1)
-	},
+    prepareList: function(){
+      this.MyList = this.List1.split('\n')
+      this.ExternalList = this.List2.split('\n')
+    },
+    getter: function(){
+      return this.Ret()
+    },
+
+    getlog: function(){
+       console.log(this.List1)
+    },
   },
   data: ()=>{
     return {
@@ -35,7 +35,7 @@ export default {
   watch: {
         Step: function(val)
 		{
-          this.API.makestep()
+          this.Api('makestep()')
           console.log(val)
         }
   },
