@@ -35,7 +35,8 @@ export default {
   watch: {
     Step: function(val){
       val
-      this.Api('rotate(r)')
+      // this.Api('rotate(1)')
+      this.Api('makestep()')
       // console.log(val)
     }
   },

@@ -31,11 +31,12 @@
 								</tr>
 							</table>
 
-							<div :class="'pers1 '+  pers1.animated" :style=pers1.pos >
-								<img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
+							<div :class="'pers1 '+pers1.animated" :style="pers1.pos" >
+                <img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
+								<img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 " style="" alt="">
 							</div>
 
-              <div :class="'pers1 '+  pers2.animated" :style=pers2.pos >
+              <div :class="'pers1 '+  pers2.animated" :style="pers2.pos" >
                 <img src="/res/sprites/characters/biker/bike_aim.png" class="w-100 " alt="">
               </div>
 
@@ -107,29 +108,8 @@ export default {
    };
   },
   methods:{
-<<<<<<< HEAD
     Api: function(comand) {
       comand=="makestep()"?this.addshg(2):''
-=======
-
-    Api: function(command){
-      let arg = command.substring(7,8)
-      switch(command.substring(0,6))
-      {
-      case 'makest':
-        this.addshg()
-        break;
-
-      case 'rotate':
-      if(arg=='r'){ this.rotate('r') }
-      else if(arg=='l'){ this.rotate('l') }
-      else return
-      break
-
-      default:
-        return
-      }
->>>>>>> 0f1d33c8139a4d6ae380403f54a45686e9c8ec90
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -157,9 +137,10 @@ export default {
       this.pers2.pos.left = cor2.left+'px'
     },
 
+
+
+
     addshg: function(id) {
-      id
-      // this.rotate('l')
       if(this["pers"+id].direction == 0){
         this["pers"+id].cor.y++
       }
