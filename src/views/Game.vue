@@ -107,24 +107,8 @@ export default {
    };
   },
   methods:{
-<<<<<<< HEAD
     Api: function(comand) {
       comand=="makestep()"?this.addshg(2):''
-=======
-    Api: function(command){
-      switch(command.substring(0,6))
-      {
-      case 'makest':
-        this.addshg()
-        break;
-
-      case 'rotate':
-      
-      break;
-      default:
-        return
-      }
->>>>>>> dc9c55982a95a934b024fe82e4ab4ed6cfc16508
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -151,7 +135,6 @@ export default {
       this.pers2.pos.top = cor2.top+'px'
       this.pers2.pos.left = cor2.left+'px'
     },
-<<<<<<< HEAD
 
     addshg: function(id) {
       id
@@ -170,23 +153,6 @@ export default {
       }
       else{
         return;
-=======
-    addshg: function() {
-    if(this.pers.direction == 0){
-      this.pers.cor.y++
-    }
-    else if(this.pers.direction == 1){
-      this.pers.cor.x++
-    }
-    else if(this.pers.direction == 2){
-      this.pers.cor.y--
-    }
-    else if(this.pers.direction == 3){
-      this.pers.cor.x--
-    }
-    else{
-      return
->>>>>>> dc9c55982a95a934b024fe82e4ab4ed6cfc16508
     }
 
     this.setcoor()
