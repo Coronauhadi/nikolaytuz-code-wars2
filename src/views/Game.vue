@@ -138,21 +138,34 @@ export default {
   },
   methods:{
     exec: function(){
-      this.step++
+      //do this.step++ while step!=-1 or something?
     },
     execDebug: function(){
       this.step++
     },
     terminate: function(){
       this.step = -1
+      this.pers1.cor.x = this.pers1.startcoords.x
+      this.pers1.cor.y = this.pers1.startcoords.x
+      this.pers2.cor.x = this.pers2.startcoords.x
+      this.pers2.cor.y = this.pers2.startcoords.x
+      this.setcoor()
+      this.pers1.direction = this.pers1.startDirection
+      this.pers1.pos.transform = 'rotate(' + String(Math.round(this.pers1.direction * 90)) + 'deg)'
+      this.pers2.direction = this.pers2.startDirection
+      this.pers2.pos.transform = 'rotate(' + String(Math.round(this.pers2.direction * 90)) + 'deg)'
     },
     Api: function(command,id){
       let arg = 0
+      arg
       let enemyId = (id==1)? 2 : 1
       command.substring(0,8)=='makestep'? this.addshg(id) : {}
-      command.substring(0,6)=='rotate'? ()=>{arg = command.substring(7,command.length-1)
-         if(arg=='r'||arg=='right')this.rotate('r',id); else if(arg=='l' || arg=='left')this.rotate('l',id); } : {}
+      console.log(command.substring(0,6))
+      if(command.substring(0,6)=='rotate'){ arg = command.substring(7,command.length-1); console.log(arg)
+        if(arg=='r'||arg=='right') this.rotate('r',id);
+        else if(arg=='l' || arg=='left') this.rotate('l',id);}
       command.substring(0,3)=='aim'? this.aim(id,enemyId) : {}
+      command.substring(0,3)=='end'? this.terminate() : {}
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -181,16 +194,16 @@ export default {
     },
     addshg: function(id) {
       if(this["pers"+id].direction == 0){
-        this["pers"+id].cor.y++
+        this["pers"+id].cor.y+1 < this.y? this["pers"+id].cor.y++ : {}
       }
       else if(this["pers"+id].direction == 1){
-        this["pers"+id].cor.x++
+        this["pers"+id].cor.x+1 < this.x? this["pers"+id].cor.x++ : {}
       }
       else if(this["pers"+id].direction == 2){
-        this["pers"+id].cor.y--
+        this["pers"+id].cor.y-1 > 0? this["pers"+id].cor.y-- : {}
       }
       else if(this["pers"+id].direction == 3){
-        this["pers"+id].cor.x--
+        this["pers"+id].cor.x-1 > 0? this["pers"+id].cor.x-- : {}
       }
       else{
         return;
@@ -231,6 +244,7 @@ export default {
               pers1: {
                 animated: ["anim"],
                 cor:{'x': 2, 'y': 2},
+                startcoords:{'x':2, 'y': 2},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                   /*
             	  direction = 0 -> look right
@@ -239,12 +253,15 @@ export default {
             	  direction = 3 -> look look top
             	  */
                 direction: 0,
+                startDirection: 0,
               },
               pers2: {
                 animated: ["anim"],
                 cor:{'x': 8, 'y': 8},
+                startcoords:{'x': 8, 'y': 8},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                 direction: 0,
+                startDirection: 0,
               },
               x: 17,
               y: 17,
