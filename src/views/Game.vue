@@ -107,29 +107,28 @@ export default {
    };
   },
   methods:{
-<<<<<<< HEAD
-    Api: function(comand) {
-      comand=="makestep()"?this.addshg(2):''
-=======
-
-    Api: function(command){
-      let arg = command.substring(7,8)
-      switch(command.substring(0,6))
+    Api: function(command,id){
+      let arg = command.substring(5,6)
+      let enemyId = (id==1)? 2 : 1
+      switch(command.substring(0,4))
       {
-      case 'makest':
-        this.addshg()
+      case 'make':
+        this.addshg(id)
         break;
 
-      case 'rotate':
-      if(arg=='r'){ this.rotate('r') }
-      else if(arg=='l'){ this.rotate('l') }
+      case 'rota':
+      if(arg=='r'){ this.rotate('r',id) }
+      else if(arg=='l'){ this.rotate('l',id) }
       else return
       break
 
+      case 'aim(':
+      this.aim(id,enemyId)
+      break
+
       default:
-        return
+      return
       }
->>>>>>> 0f1d33c8139a4d6ae380403f54a45686e9c8ec90
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -158,8 +157,6 @@ export default {
     },
 
     addshg: function(id) {
-      id
-      // this.rotate('l')
       if(this["pers"+id].direction == 0){
         this["pers"+id].cor.y++
       }
@@ -178,17 +175,31 @@ export default {
 
     this.setcoor()
   },
-	rotate: function(dir){
+  rotateByAngle: function(angle, id){
+     this["pers"+id].pos.transform = 'rotate(' + String(angle-90) + 'deg)'
+     //TODO: rotate on the right angle (by 'direction' variable) after shooting
+  },
+  aim: function(idCaller,idEnemy){
+    let Vector = []
+    Vector.push(this["pers" + idEnemy].cor.x - this["pers" + idCaller].cor.x)
+    Vector.push(this["pers" + idEnemy].cor.y - this["pers" + idCaller].cor.y)
+    let angle = Math.atan(Vector[0]/Vector[1]) * 180 / Math.PI
+    if(Vector[1]>0){ angle += 90;  }
+    else{ angle -= 90}
+    console.log(angle)
+    this.rotateByAngle(angle,idCaller)
+  },
+	rotate: function(dir,id){
 		if(dir == 'l'){
-			this.pers.direction = (this.pers.direction == 0)? 3 : (this.pers.direction-1) % 4
+			this["pers"+id].direction = (this["pers"+id].direction == 0)? 3 : (this["pers"+id].direction-1) % 4
 		}
 		else if(dir == 'r'){
-			this.pers.direction = Math.abs((this.pers.direction +1) % 4)
+			this["pers"+id].direction = Math.abs((this["pers"+id].direction +1) % 4)
 		}
 		else{
 			return;
 		}
-		this.pers1.pos.transform = 'rotate(' + String(Math.round(this.pers1.direction * 90)) + 'deg)'
+		this["pers"+id].pos.transform = 'rotate(' + String(Math.round(this["pers"+id].direction * 90)) + 'deg)'
 	},
   },
   data: ()=>{
