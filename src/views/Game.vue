@@ -107,8 +107,29 @@ export default {
    };
   },
   methods:{
+<<<<<<< HEAD
     Api: function(comand) {
       comand=="makestep()"?this.addshg(2):''
+=======
+
+    Api: function(command){
+      let arg = command.substring(7,8)
+      switch(command.substring(0,6))
+      {
+      case 'makest':
+        this.addshg()
+        break;
+
+      case 'rotate':
+      if(arg=='r'){ this.rotate('r') }
+      else if(arg=='l'){ this.rotate('l') }
+      else return
+      break
+
+      default:
+        return
+      }
+>>>>>>> 0f1d33c8139a4d6ae380403f54a45686e9c8ec90
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -158,11 +179,11 @@ export default {
     this.setcoor()
   },
 	rotate: function(dir){
-		if(dir == 'left' || dir == 'l'){
-			this.pers1.direction = (this.pers1.direction == 0)? 3 : (this.pers1.direction-1) % 4
+		if(dir == 'l'){
+			this.pers.direction = (this.pers.direction == 0)? 3 : (this.pers.direction-1) % 4
 		}
-		else if(dir == 'right' || dir == 'r'){
-			this.pers1.direction = Math.abs((this.pers1.direction +1) % 4)
+		else if(dir == 'r'){
+			this.pers.direction = Math.abs((this.pers.direction +1) % 4)
 		}
 		else{
 			return;
@@ -197,10 +218,6 @@ export default {
               tables: [],
               List: '',
               step: 0,
-
-              // Api: {
-              //   makestep: this.addshg(),
-              // },
             }
   },
   watch: {
