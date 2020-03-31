@@ -31,23 +31,27 @@ export default {
     return {
 		MyList: [],
 		ExternalList: [],
-    iter: 0,
+    myIter: 0,
+    extIter: 0,
     }
   },
   watch: {
     Step: function(){
-      if(this.Step==0) { this.prepareList(); this.iter = 0; }
+      if(this.Step==0) { this.prepareList(); this.myIter = 0; this.extIter = 0; }
       if(this.MyList == undefined && this.ExternalList == undefined)
         return
-      //this is the real iterator, because we need to add only a half by 1 step because of 2 lists
-      let intIter = Math.round(this.iter)
-      if(this.MyList[intIter]==undefined && this.ExternalList[intIter]==undefined){
+      if(this.MyList[this.myIter]==undefined && this.ExternalList[this.extIter]==undefined){
         this.Api('end',1)
       }
-      console.log(intIter)
-      this.Step%2==0? this.MyList[intIter]!=undefined? this.Api(this.MyList[intIter],1):{}
-      : this.ExternalList[intIter]!=undefined? this.Api(this.ExternalList[this.intIter],2) :{}
-      this.iter += 0.499
+
+      if(this.Step%2==0){
+        this.MyList[this.myIter]!=undefined? this.Api(this.MyList[this.extIter],1) : {}
+        this.myIter++
+      }
+      else{
+        this.ExternalList[this.myIter]!=undefined? this.Api(this.ExternalList[this.extIter],2) : {}
+        this.extIter++
+      }
     },
   },
 }
