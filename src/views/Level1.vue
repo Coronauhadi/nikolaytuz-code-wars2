@@ -167,7 +167,7 @@ export default {
     Api: function(command,id){
       let arg = 0
       let enemyId = (id==1)? 2 : 1
-      if(this.winCounter>1){
+      if(this.winCounter>0){
         alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
         return
       }
