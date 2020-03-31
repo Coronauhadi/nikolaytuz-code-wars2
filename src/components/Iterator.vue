@@ -15,8 +15,8 @@ export default {
   },
   methods: {
     prepareList: function(){
-      this.MyList = this.List1.split('\n')
-      this.ExternalList = this.List2.split('\n')
+      this.MyList = this.List1.split('\n').replace(' ','')
+      this.ExternalList = this.List2.split('\n').replace(' ','')
     },
     getter: function(){
       return this.Ret()
