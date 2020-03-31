@@ -108,10 +108,6 @@ export default {
    };
   },
   methods:{
-<<<<<<< HEAD
-    Api: function(comand) {
-      comand=="makestep()"?this.addshg(2):''
-=======
     Api: function(command,id){
       let arg = command.substring(5,6)
       let enemyId = (id==1)? 2 : 1
@@ -134,7 +130,6 @@ export default {
       default:
       return
       }
->>>>>>> 1fce2772282d41862fd3e85ed013d1f5b42fedcb
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
