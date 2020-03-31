@@ -37,6 +37,10 @@
                 <img src="/res/sprites/characters/kpoper/kpoper_idle.png" class="w-100 " alt="">
 							</div>
 
+              <div :class="'pers1 '+  pers2.animated" :style="pers2.pos" >
+                <img src="/res/sprites/characters/biker/bike_aim.png" class="w-100 " alt="">
+              </div>
+
               <div :class="'winbox'" :style="winbox.pos" >
                 <img src="/res/sprites/other/flag.png" class="flag " alt="">
               </div>
@@ -158,17 +162,25 @@ export default {
       this.setcoor()
       this.pers1.direction = this.pers1.startDirection
       this.pers1.pos.transform = 'rotate(' + String(Math.round(this.pers1.direction * 90)) + 'deg)'
+      this.winCounter = 0
     },
     Api: function(command,id){
       let arg = 0
-      arg
       let enemyId = (id==1)? 2 : 1
+      if(this.winCounter>1){
+        alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
+        return
+      }
       command.substring(0,8)=='makestep'? this.addshg(id) : {}
       if(command.substring(0,6)=='rotate'){ arg = command.substring(7,command.length-1)
         if(arg=='r'||arg=='right') this.rotate('r',id);
         else if(arg=='l' || arg=='left') this.rotate('l',id);}
       command.substring(0,3)=='aim'? this.aim(id,enemyId) : {}
-      command.substring(0,4)=='wait'? {} : {}
+      if(command.substring(0,7)=='conquer'){
+        console.log(id + ' is conquering!')
+        if(this.whoIs(this.winbox.cor.x,this.winbox.cor.y) == id) this.winCounter++
+        else this.winCounter = 0
+      }
       command.substring(0,3)=='end'? this.terminate() : {}
     },
     addtables: function() {
@@ -190,11 +202,14 @@ export default {
     },
     setcoor: function() {
       let cor1 = this.getCoords(document.getElementById("x"+this.pers1.cor.x+"y"+this.pers1.cor.y))
+      let cor2 = this.getCoords(document.getElementById("x"+this.pers2.cor.x+"y"+this.pers2.cor.y))
       this.pers1.pos.top = cor1.top+'px'
       this.pers1.pos.left = cor1.left+'px'
-      let cor2 = this.getCoords(document.getElementById("x"+this.winbox.cor.x+"y"+this.winbox.cor.y))
-      this.winbox.pos.top = cor2.top + 'px'
-      this.winbox.pos.left = cor2.left+'px'
+      this.pers2.pos.top = cor2.top+'px'
+      this.pers2.pos.left = cor2.left+'px'
+      let cor3 = this.getCoords(document.getElementById("x"+this.winbox.cor.x+"y"+this.winbox.cor.y))
+      this.winbox.pos.top = cor3.top + 'px'
+      this.winbox.pos.left = cor3.left+'px'
     },
     addshg: function(id) {
       if(this["pers"+id].direction == 0){
@@ -240,6 +255,14 @@ export default {
 		}
 		this["pers"+id].pos.transform = 'rotate(' + String(Math.round(this["pers"+id].direction * 90)) + 'deg)'
 	},
+  whoIs: function(x,y){
+    if(this.pers1.cor.x == x && this.pers1.cor.y == y)
+      return 1
+    else if(this.pers2.cor.x == x && this.pers2.cor.y == y)
+      return 2
+    else
+      return 0
+  },
   },
   data: ()=>{
     return {
@@ -259,12 +282,22 @@ export default {
                 direction: 0,
                 startDirection: 0,
               },
+              pers2: {
+                animated: ["anim"],
+                cor:{'x': 8, 'y': 8},
+                startcoords:{'x': 8, 'y': 8},
+                pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
+                direction: 0,
+                startDirection: 0,
+              },
               x: 17,
               y: 17,
               winbox: {
                 cor:{'x': 5, 'y': 5},
                 pos: {"top": "1px", "left":"1px",},
               },
+              winCounter: 0,
+              winner: 0,
               tables: [],
               List: '',
               step: -1,

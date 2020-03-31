@@ -16,7 +16,6 @@ export default {
   methods: {
     prepareList: function(){
       this.MyList = this.List1!=undefined? this.List1.split('\n') : {}
-      console.log(this.MyList)
       this.ExternalList = this.List2!=undefined? this.List2.split('\n') : {}
     },
     getter: function(){
