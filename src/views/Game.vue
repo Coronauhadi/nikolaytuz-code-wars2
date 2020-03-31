@@ -3,12 +3,12 @@
     <div class="row  ">
 
 					<div class="col-4 p-0 " style="height:100vh;">
-							<textarea id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!">
+							<textarea v-model='List' id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!">
 							</textarea>
-							<button type="button" class="sub" @click="rotate('l')" name="button">√</button>
+							<button type="button" class="sub" @click="execute()" name="button">√</button>
 					</div>
 
-          <Iterator/>
+          <Iterator List1='List' API='API' Step='step'/>
 
 					<div class="col-8 ">
 						<div class="">
@@ -156,6 +156,9 @@ export default {
 		}
 		this.pers.pos.transform = 'rotate(' + String(Math.round(this.pers.direction * 90)) + 'deg)'
 	},
+	"execute": function(){
+		
+	},
   },
   data: ()=>{
     return {
@@ -175,6 +178,11 @@ export default {
               x: 17,
               y: 17,
               tables: [],
+              List: '',
+              step: 0,
+              API: {
+                  makestep: this.addshg(), 
+              },
               }
   },
   watch: {
