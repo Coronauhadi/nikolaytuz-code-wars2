@@ -35,7 +35,6 @@ export default {
   },
   watch: {
     Step: function(){
-      console.log(this.Step)
       if(this.Step==0) { this.prepareList(); this.iter = 0; }
       if(this.MyList == undefined && this.ExternalList == undefined)
         return
