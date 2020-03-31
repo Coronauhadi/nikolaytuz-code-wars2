@@ -31,11 +31,11 @@
 								</tr>
 							</table>
 
-							<div :class="'pers '+  pers.animated" :style=pers.pos >
+							<div :class="'pers1 '+  pers1.animated" :style=pers1.pos >
 								<img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
 							</div>
 
-              <div :class="'pers '+  pers2.animated" :style=pers2.pos >
+              <div :class="'pers1 '+  pers2.animated" :style=pers2.pos >
                 <img src="/res/sprites/characters/biker/bike_aim.png" class="w-100 " alt="">
               </div>
 
@@ -73,7 +73,7 @@
   }
 
 
-  .pers{
+  .pers1{
     position: fixed;
     height:4vh;
     width: 4vh;
@@ -100,7 +100,7 @@ export default {
   },
   mounted: function() {
     this.setcoor()
-    // this.pers.animated.push("anim")
+    // this.pers1.animated.push("anim")
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
       this.windowHeight = window.innerHeight;
@@ -143,13 +143,14 @@ export default {
 
     },
     setcoor: function() {
-      let cor1 = this.getCoords(document.getElementById("x"+this.pers.cor.x+"y"+this.pers.cor.y))
+      let cor1 = this.getCoords(document.getElementById("x"+this.pers1.cor.x+"y"+this.pers1.cor.y))
       let cor2 = this.getCoords(document.getElementById("x"+this.pers2.cor.x+"y"+this.pers2.cor.y))
-      this.pers.pos.top = cor1.top+'px'
-      this.pers.pos.left = cor1.left+'px'
+      this.pers1.pos.top = cor1.top+'px'
+      this.pers1.pos.left = cor1.left+'px'
       this.pers2.pos.top = cor2.top+'px'
       this.pers2.pos.left = cor2.left+'px'
     },
+
     addshg: function() {
     if(this.pers.direction == 0){
       this.pers.cor.y++
@@ -170,23 +171,31 @@ export default {
     this.setcoor()
   },
 	rotate: function(dir){
+<<<<<<< HEAD
 		if(dir == 'l'){
 			this.pers.direction = (this.pers.direction == 0)? 3 : (this.pers.direction-1) % 4
 		}
 		else if(dir == 'r'){
 			this.pers.direction = Math.abs((this.pers.direction +1) % 4)
+=======
+		if(dir == 'left' || dir == 'l'){
+			this.pers1.direction = (this.pers1.direction == 0)? 3 : (this.pers1.direction-1) % 4
+		}
+		else if(dir == 'right' || dir == 'r'){
+			this.pers1.direction = Math.abs((this.pers1.direction +1) % 4)
+>>>>>>> 64c95b79e27e6edfc0c6c98ff9e5fb2090940544
 		}
 		else{
 			return;
 		}
-		this.pers.pos.transform = 'rotate(' + String(Math.round(this.pers.direction * 90)) + 'deg)'
+		this.pers1.pos.transform = 'rotate(' + String(Math.round(this.pers1.direction * 90)) + 'deg)'
 	},
   },
   data: ()=>{
     return {
               windowWidth: window.innerWidth,
               windowHeight: window.innerHeight,
-              pers: {
+              pers1: {
                 animated: ["anim"],
                 cor:{'x': 2, 'y': 2},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
@@ -202,12 +211,6 @@ export default {
                 animated: ["anim"],
                 cor:{'x': 8, 'y': 8},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
-                  /*
-                direction = 0 -> look right
-                direction = 1 -> look bottom
-                direction = 2 -> look left
-                direction = 3 -> look look top
-                */
                 direction: 0,
               },
               x: 17,
