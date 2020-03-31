@@ -108,9 +108,23 @@ export default {
    };
   },
   methods:{
-    Api: function(comand) {
+    Api: function(command){
       comand=="makestep()"?this.addshg(2):''
-    },
+      let arg = command.substring(7,8)
+      switch(command.substring(0,6)){
+      case 'makest':
+        this.addshg()
+        break;
+
+      case 'rotate':
+      if(arg=='r'){ this.rotate('r') }
+      else if(arg=='l'){ this.rotate('l') }
+      else return
+      break
+
+      default:
+        return
+      },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
         let a = []
