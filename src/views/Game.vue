@@ -8,6 +8,7 @@
 							<button type="button" class="sub" @click="rotate('l')" name="button">√</button>
 					</div>
 
+          <Iterator/>
 
 					<div class="col-8 ">
 						<div class="">
@@ -83,12 +84,12 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import Iterator from '@/components/Iterator.vue'
 
 export default {
   name: 'Game',
   components: {
-    // HelloWorld
+    Iterator
   },
   created: function() {
     this.addtables()
@@ -161,7 +162,7 @@ export default {
               windowWidth: window.innerWidth,
               pers: {
                 animated: ["anim"],
-                cor:{'x': 5, 'y': 5},
+                cor:{'x': 2, 'y': 2},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                 /*
           	  direction = 0 -> look right
