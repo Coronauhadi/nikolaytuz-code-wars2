@@ -103,8 +103,19 @@ export default {
    };
   },
   methods:{
-    Api: function(comand) {
-      comand=="makestep()"?this.addshg():''
+    Api: function(command){
+      switch(command.substring(0,6))
+      {
+      case 'makest':
+        this.addshg()
+        break;
+
+      case 'rotate':
+      
+      break;
+      default:
+        return
+      }
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -128,8 +139,7 @@ export default {
       this.pers.pos.top = cor.top+'px'
       this.pers.pos.left = cor.left+'px'
     },
-<<<<<<< HEAD
-    "addshg": function() {
+    addshg: function() {
     if(this.pers.direction == 0){
       this.pers.cor.y++
     }
