@@ -83,7 +83,7 @@
           <div class="win" v-if="winer">
             <div  class="windiv rgba-black-strong border text-white text-center py-5">
               <h2>Поздравляем вы прошли игру</h2>
-              <a href="/#/" class="btn btn-white" >Поздавить себя</a>
+              <button  @click="nextpage('Home')" class="btn btn-white" >Поздавить себя</button>
             </div>
           </div>
         <div class="win" v-if="loss">
@@ -97,7 +97,7 @@
 </template>
 
 
-<style media="screen">
+<style scoped>
 .info{
   top:0;
   left: 0;
@@ -190,8 +190,8 @@
   .windiv{
     position: fixed;
     top: 25%;
-    right: 25%;
-    width: 50%;
+    right: 12%%;
+    width: 75%;
     z-index: 999;
   }
 
@@ -206,6 +206,9 @@ export default {
   name: 'Level1',
   components: {
     Iterator
+  },
+  props: {
+    nextpage: Function,
   },
   created: function() {
     this.createWalls()

@@ -65,7 +65,7 @@
         <div class="win" v-if="winer">
           <div  class="windiv rgba-black-strong border text-white text-center py-5">
             <h2>Поздравляем вы прошли уровень</h2>
-              <a href="/#/Level2" class="btn btn-white" >Перейти на следующий</a>
+              <button  @click="nextpage('Level2')" class="btn btn-white" >Перейти на следующий</button>
           </div>
         </div>
 
@@ -98,7 +98,7 @@
 </template>
 
 
-<style media="screen">
+<style scoped>
   .info{
     top:0;
     left: 0;
@@ -138,27 +138,27 @@
     right: 0%;
     width: 100%;
     height: 100vh;
-    z-index: 99;
+    z-index: 999;
   }
   .windiv{
     position: fixed;
     top: 25%;
-    right: 25%;
-    width: 50%;
-    z-index: 999;
+    right: 12%;
+    width: 75%;
+    z-index: 1000;
   }
 
   .sub-pom{
     position: fixed;
     bottom: 12px;
-    right: 360px;
+    right: 230px;
     z-index: 99;
     border-radius: 10px;
   }
 
   .sub-debug{
     bottom: 12px;
-    right: 120px;
+    right: 30px;
     position: fixed;
     font: 17px Arial;
     border-radius: 10px;
@@ -167,7 +167,7 @@
 
   .sub-stop{
     bottom: 12px;
-    right: 230px;
+    right: 120px;
     position: fixed;
     border-radius: 10px;
     z-index: 99;
@@ -175,8 +175,7 @@
 
   .pers1{
     position: fixed;
-
-    z-index: 999;
+    z-index: 99;
   }
   .razm{
     height: 20px!important;
@@ -185,7 +184,7 @@
 
   .winbox{
     position: fixed;
-    z-index: 999;
+    z-index: 99;
   }
   .anim{
     transition: all 0.5s ease-in-out;
@@ -202,6 +201,9 @@ export default {
   name: 'Level1',
   components: {
     Iterator
+  },
+  props: {
+    nextpage: Function,
   },
   created: function() {
     this.addtables()
