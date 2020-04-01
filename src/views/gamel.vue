@@ -18,11 +18,7 @@ export default {
     return {
       levcont: 1,
       win: false,
-<<<<<<< HEAD
-      level1:{
-=======
       level:{
->>>>>>> 6fceab0166f8e65e21717c80dfc726621ae03014
 
       },
       levels: [
