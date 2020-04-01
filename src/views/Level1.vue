@@ -2,17 +2,21 @@
   <div class="container-fluid">
     <div class="row  ">
 
-					<div class="col-4 p-0 " style="height:100vh;">
-							<textarea v-model='List' id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!">
-							</textarea>
+					<!-- <div class="col p-0 " style="height:100vh;"> -->
+							<!-- <textarea v-model='List' id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!"></textarea> -->
 							<!-- <button type="button" class="sub" @click="exec" name="button">√</button> -->
-              <button type="button" class="sub-debug" @click="execDebug()" name="button-debug"> |> </button>
-              <button type="button" class="sub-stop" @click="terminate()" name="button-stop"> stop </button>
-					</div>
+					<!-- </div> -->
+          <button type="button" class="sub-debug btn btn-black" @click="execDebug()" name="button-debug"> |> </button>
+          <button type="button" class="sub-stop btn btn-black" @click="terminate()" name="button-stop"> stop </button>
+          <button type="button" class="sub-pom btn btn-black " @click="info=!info" name=""> Помощь </button>
 
           <Iterator :List1='List' :Api="Api" :Step='step' :List2='EnemyList'/>
 
-					<div class="col-8 ">
+					<div class="col-12 ">
+            <div class="">
+              <textarea v-model='List' id="my-textarea" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none"   name="text" placeholder="// поехали!"></textarea>
+            </div>
+
 						<div class="">
 
 							<div class="container-fluid">
@@ -29,20 +33,20 @@
 
 							<table id="fields" class="mx-auto ">
 								<tr v-for="table in tables" :key="table.message">
-									<th v-for="th in table" :key="th.message" :id="'x'+th.x+'y'+th.y" :title="'x'+th.x+';y'+th.y" class="unique-color text-white  border" style="height:4vh;width:4vh;"></th>
+									<th v-for="th in table" :key="th.message" :id="'x'+th.x+'y'+th.y" :title="'x'+th.x+';y'+th.y" class="unique-color text-white  border razm" style=""></th>
 								</tr>
 							</table>
 
-							<div :class="'pers1 '+pers1.animated" :style="pers1.pos" >
-                <img src="/res/sprites/characters/kpoper/kpoper_idle.png" class="w-100 " alt="">
+							<div :class="'pers1 razm '+pers1.animated" :style="pers1.pos" >
+                <img src="/res/sprites/characters/kpoper/kpoper_idle.png" class="razm" alt="">
 							</div>
 
-              <div :class="'pers1 '+  pers2.animated" :style="pers2.pos" >
+              <div :class="'pers1 razm '+  pers2.animated" :style="pers2.pos" >
                 <img src="/res/sprites/characters/biker/bike_aim.png" class="w-100 " alt="">
               </div>
 
-              <div :class="'winbox'" :style="winbox.pos" >
-                <img src="/res/sprites/other/flag.png" class="flag " alt="">
+              <div :class="'winbox razm'" :style="winbox.pos" >
+                <img src="/res/sprites/other/flag.png" class="flag w-100" alt="">
               </div>
 
 							<div class="row ">
@@ -71,16 +75,37 @@
           </div>
         </div>
 
-        <div class="info" v-show="info">
-          
+        <div class="info elegant-color-dark  " v-if="info">
+          <div class="container">
+            <div class="row">
+              <div class="col-10 white mx-auto p-5 mt-5">
+                <h1>#Команды для управления персонажем</h1>
+                <p class="lead"> Помните, что команды разделяются переносом строки (клавиша Enter), в одной строке не может быть больше одной команды!</p>
+                <p class=""><b>makestep()</b> - Эта команда позволит сделать шаг в том направлении, в котором смотрит персонаж</p>
+                <p class=""><b>rotate(r)</b> или <b>rotate(l)</b> - Эта команда повзволит вашему персонажу повернуться. В зависимости от параметра l или r, персонаж повернет влево или вправо</p>
+                <p class=""><b>for(х)</b> - А что если надо сделать несколько шагов. Эта функция говорит сколько раз выполнить следующую команду.
+                <br>Например: for(5)makestep() заставит персонажа пройти 5 шагов. </p>
+                <p><b>conquer()</b> - Цель игры захватить флаг. Сделать это можно с помощью данной команды. </p>
+                <p class=""><b>#</b> - Помечает строчку, как комментарий. Напишите здесь любую необходимую информацию! Например: #на этом шаге я пришел на клетку 1,15</p>
+                <button type="button" class="btn btn-elegant w-100" @click="info=!info" name="button">Вернуться на поле боя</button>
+              </div>
+            </div>
+          </div>
         </div>
+
   </div>
 </template>
 
 
 <style media="screen">
   .info{
+    top:0;
+    left: 0;
     position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 9999;
+
 
   }
 /*
@@ -115,45 +140,43 @@
     z-index: 999;
   }
 
+  .sub-pom{
+    position: fixed;
+    bottom: 12px;
+    right: 360px;
+    z-index: 99;
+    border-radius: 10px;
+  }
+
   .sub-debug{
     bottom: 12px;
     right: 120px;
-    padding: 12px 24px;
     position: fixed;
-    font: 16px Arial;
-    text-align: center;
-    background-color: #112;
-    color: red;
-    border: solid #111 6px;
+    font: 17px Arial;
     border-radius: 10px;
     z-index: 99;
   }
 
   .sub-stop{
     bottom: 12px;
-    right: 240px;
-    padding: 12px 24px;
+    right: 230px;
     position: fixed;
-    font: 16px Arial;
-    text-align: center;
-    background-color: #112;
-    color: red;
-    border: solid #111 6px;
     border-radius: 10px;
     z-index: 99;
   }
 
   .pers1{
     position: fixed;
-    height:4vh;
-    width: 4vh;
+
     z-index: 999;
+  }
+  .razm{
+    height: 30px!important;
+    width: 30px!important;
   }
 
   .winbox{
     position: fixed;
-    height: 4vh;
-    width: 4vh;
     z-index: 999;
   }
   .anim{

@@ -6,7 +6,7 @@
           <h1><b>Игра обучающая программированию</b> </h1>
 
           <div class=" mt-5">
-            <a  class="btn btn-white w-25" href="/#/Level1" name="button">Начать</a>
+            <a  class="btn btn-white w-25" href="/#/Level1/" name="button">Начать</a>
           </div>
           <div class=" " v-if="prodshow">
             <a  class="btn btn-white w-25" :href="hlevel" name="button">Продолжить</a>
@@ -43,14 +43,14 @@ export default {
     if (localStorage.level) {
       this.level = localStorage.level
       this.prodshow = true
-      this.hlevel = "/#/Level"+this.level
+      this.hlevel = "/#/Level"+this.level+"/"
     }
    },
    data(){
      return {
        level: 1,
        prodshow: false,
-       hlevel: "/#/Level1"
+       hlevel: "/#/Level1/"
      }
    },
   watch: {
