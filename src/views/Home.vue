@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col ">
         <div class="text-center mt-5 w-50 mx-auto elegant-color bor py-5"  style="height:40vh">
-          <h1><b>Игра обучающая программированию</b> </h1>
+          <h1><b>Code wars</b> </h1>
 
           <div class=" mt-5">
             <a  class="btn btn-white w-25" href="/#/Level1/" name="button">Начать</a>

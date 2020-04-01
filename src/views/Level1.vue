@@ -14,7 +14,7 @@
 
 					<div class="col-12 ">
             <div class="">
-              <textarea v-model='List' id="my-textarea" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none"   name="text" placeholder="// поехали!"></textarea>
+              <textarea v-model='List' id="my-textarea" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none"   name="text" placeholder="# поехали!"></textarea>
             </div>
 
 						<div class="">
