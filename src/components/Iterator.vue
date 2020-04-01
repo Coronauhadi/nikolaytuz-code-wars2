@@ -34,6 +34,9 @@ export default {
     let forData = []
     for(let i=0;i<List.length;i++){
       List[i].replace(' ','')
+      if(List[i].substring(0,1) == '#'){
+        List.splice(i,1)
+      }
     if(List[i].substring(0,3)=='for'){
         saveData = (i+1!=List.length)? List.slice(i+1,List.length) : [];
         //getting 'x' from 'for(x)'

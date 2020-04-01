@@ -50,10 +50,6 @@
 								<div class="col">
 									<hr class="mb-1 elegant-color-dark">
 									<h3>{{this.step+1}} шаг</h3>
-                  <h3></h3>
-									<ul>
-										<li></li>
-									</ul>
 								</div>
 							</div>
 						</div>
