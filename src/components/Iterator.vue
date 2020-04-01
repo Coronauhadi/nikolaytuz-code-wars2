@@ -33,10 +33,12 @@ export default {
     let repeatIt = ''
     let forData = []
     for(let i=0;i<List.length;i++){
+      List[i].replace(' ','')
     if(List[i].substring(0,3)=='for'){
         saveData = (i+1!=List.length)? List.slice(i+1,List.length) : [];
         //getting 'x' from 'for(x)'
         arg = Number(List[i].substring(4,List[i].indexOf(')')))
+        arg = arg>100? 100 : arg
         //getting command name after 'for(x)'
         repeatIt = List[i].substring(List[i].indexOf(')')+1,List[i].length)
         forData = []
@@ -44,8 +46,7 @@ export default {
         List = List.slice(0,i)
         List = forData != undefined? List.concat(forData) : {}
         List = saveData!=undefined? List.concat(saveData) : {}
-    }
-
+      }
     }
     return List
   },
@@ -60,19 +61,19 @@ export default {
   },
   watch: {
     Step: function(){
+      if(this.Step==-1) return
       if(this.Step==0) { this.prepareList(); this.myIter = 0; this.extIter = 0; }
       if(this.MyList == undefined && this.ExternalList == undefined)
         return
       if(this.MyList[this.myIter]==undefined && this.ExternalList[this.extIter]==undefined){
         this.Api('end',1)
       }
-
       if(this.Step%2==0){
-        this.MyList[this.myIter]!=undefined? this.Api(this.MyList[this.extIter],1) : {}
+        this.MyList[this.myIter]!=undefined? this.Api(this.MyList[this.myIter],1) : {}
         this.myIter++
       }
       else{
-        this.ExternalList[this.myIter]!=undefined? this.Api(this.ExternalList[this.extIter],2) : {}
+        this.ExternalList[this.extIter]!=undefined? this.Api(this.ExternalList[this.extIter],2) : {}
         this.extIter++
       }
     },
