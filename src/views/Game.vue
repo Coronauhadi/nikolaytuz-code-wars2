@@ -5,7 +5,9 @@
 					<div class="col-4 p-0 " style="height:100vh;">
 							<textarea v-model='List' id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!">
 							</textarea>
-							<button type="button" class="sub" @click="step++" name="button">√</button>
+							<button type="button" class="sub" @click="exec" name="button">√</button>
+              <button type="button" class="sub-debug" @click="execDebug()" name="button-debug"> |> </button>
+              <button type="button" class="sub-stop" @click="terminate()" name="button-stop"> stop </button>
 					</div>
 
           <Iterator :List1='List' :Api="Api" :Step='step'/>
@@ -73,10 +75,39 @@
     z-index: 99;
   }
 
+<<<<<<< HEAD
   .bul{
     position: absolute;
     top: 69%;
     right: 38%;
+=======
+  .sub-debug{
+    bottom: 12px;
+    right: 120px;
+    padding: 12px 24px;
+    position: fixed;
+    font: 16px Arial;
+    text-align: center;
+    background-color: #112;
+    color: red;
+    border: solid #111 6px;
+    border-radius: 10px;
+    z-index: 99;
+  }
+
+  .sub-stop{
+    bottom: 12px;
+    right: 240px;
+    padding: 12px 24px;
+    position: fixed;
+    font: 16px Arial;
+    text-align: center;
+    background-color: #112;
+    color: red;
+    border: solid #111 6px;
+    border-radius: 10px;
+    z-index: 99;
+>>>>>>> a244e99fb05f9bac115c0d9f87eb3085f0654fa5
   }
 
   .pers1{
@@ -113,10 +144,33 @@ export default {
    };
   },
   methods:{
+<<<<<<< HEAD
 
+=======
+    exec: function(){
+      //do this.step++ while step!=-1 or something?
+    },
+    execDebug: function(){
+      this.step++
+    },
+    terminate: function(){
+      this.step = -1
+      this.pers1.cor.x = this.pers1.startcoords.x
+      this.pers1.cor.y = this.pers1.startcoords.x
+      this.pers2.cor.x = this.pers2.startcoords.x
+      this.pers2.cor.y = this.pers2.startcoords.x
+      this.setcoor()
+      this.pers1.direction = this.pers1.startDirection
+      this.pers1.pos.transform = 'rotate(' + String(Math.round(this.pers1.direction * 90)) + 'deg)'
+      this.pers2.direction = this.pers2.startDirection
+      this.pers2.pos.transform = 'rotate(' + String(Math.round(this.pers2.direction * 90)) + 'deg)'
+    },
+>>>>>>> a244e99fb05f9bac115c0d9f87eb3085f0654fa5
     Api: function(command,id){
-      let arg = command.substring(5,6)
+      let arg = 0
+      arg
       let enemyId = (id==1)? 2 : 1
+<<<<<<< HEAD
       switch(command.substring(0,4))
       {
       case 'make':
@@ -136,6 +190,15 @@ export default {
       default:
       return
       }
+=======
+      command.substring(0,8)=='makestep'? this.addshg(id) : {}
+      console.log(command.substring(0,6))
+      if(command.substring(0,6)=='rotate'){ arg = command.substring(7,command.length-1); console.log(arg)
+        if(arg=='r'||arg=='right') this.rotate('r',id);
+        else if(arg=='l' || arg=='left') this.rotate('l',id);}
+      command.substring(0,3)=='aim'? this.aim(id,enemyId) : {}
+      command.substring(0,3)=='end'? this.terminate() : {}
+>>>>>>> a244e99fb05f9bac115c0d9f87eb3085f0654fa5
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -162,22 +225,18 @@ export default {
       this.pers2.pos.top = cor2.top+'px'
       this.pers2.pos.left = cor2.left+'px'
     },
-
-
-
-
     addshg: function(id) {
       if(this["pers"+id].direction == 0){
-        this["pers"+id].cor.y++
+        this["pers"+id].cor.y+1 < this.y? this["pers"+id].cor.y++ : {}
       }
       else if(this["pers"+id].direction == 1){
-        this["pers"+id].cor.x++
+        this["pers"+id].cor.x+1 < this.x? this["pers"+id].cor.x++ : {}
       }
       else if(this["pers"+id].direction == 2){
-        this["pers"+id].cor.y--
+        this["pers"+id].cor.y-1 > 0? this["pers"+id].cor.y-- : {}
       }
       else if(this["pers"+id].direction == 3){
-        this["pers"+id].cor.x--
+        this["pers"+id].cor.x-1 > 0? this["pers"+id].cor.x-- : {}
       }
       else{
         return;
@@ -187,7 +246,7 @@ export default {
   },
   rotateByAngle: function(angle, id){
      this["pers"+id].pos.transform = 'rotate(' + String(angle-90) + 'deg)'
-     //TODO: rotate on the right angle (by 'direction' variable) after shooting
+     //TODO: rotate on the last angle (by 'direction' variable) after shooting
   },
   aim: function(idCaller,idEnemy){
     let Vector = []
@@ -196,7 +255,6 @@ export default {
     let angle = Math.atan(Vector[0]/Vector[1]) * 180 / Math.PI
     if(Vector[1]>0){ angle += 90;  }
     else{ angle -= 90}
-    console.log(angle)
     this.rotateByAngle(angle,idCaller)
   },
 	rotate: function(dir,id){
@@ -219,6 +277,7 @@ export default {
               pers1: {
                 animated: ["anim"],
                 cor:{'x': 2, 'y': 2},
+                startcoords:{'x':2, 'y': 2},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                   /*
             	  direction = 0 -> look right
@@ -227,18 +286,21 @@ export default {
             	  direction = 3 -> look look top
             	  */
                 direction: 0,
+                startDirection: 0,
               },
               pers2: {
                 animated: ["anim"],
                 cor:{'x': 8, 'y': 8},
+                startcoords:{'x': 8, 'y': 8},
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                 direction: 0,
+                startDirection: 0,
               },
               x: 17,
               y: 17,
               tables: [],
               List: '',
-              step: 0,
+              step: -1,
             }
   },
   watch: {

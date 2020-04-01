@@ -17,6 +17,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/Game.vue')
+  },
+  {
+    path: '/Level1',
+    name: 'Level1',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/Level1.vue')
   }
 ]
 

@@ -15,29 +15,43 @@ export default {
   },
   methods: {
     prepareList: function(){
-      this.MyList = this.List1.split('\n').replace(' ','')
-      this.ExternalList = this.List2.split('\n').replace(' ','')
+      this.MyList = this.List1!=undefined? this.List1.split('\n') : {}
+      this.ExternalList = this.List2!=undefined? this.List2.split('\n') : {}
     },
     getter: function(){
       return this.Ret()
     },
-
-    getlog: function(){
-       console.log(this.List1)
+    sleep: function(ms) {
+      ms += new Date().getTime();
+      while (new Date() < ms){''}
     },
   },
   data: ()=>{
     return {
 		MyList: [],
 		ExternalList: [],
+    myIter: 0,
+    extIter: 0,
     }
   },
   watch: {
-    Step: function(val){
-      val
-      this.Api('aim()',1)
-      // console.log(val)
-    }
+    Step: function(){
+      if(this.Step==0) { this.prepareList(); this.myIter = 0; this.extIter = 0; }
+      if(this.MyList == undefined && this.ExternalList == undefined)
+        return
+      if(this.MyList[this.myIter]==undefined && this.ExternalList[this.extIter]==undefined){
+        this.Api('end',1)
+      }
+
+      if(this.Step%2==0){
+        this.MyList[this.myIter]!=undefined? this.Api(this.MyList[this.extIter],1) : {}
+        this.myIter++
+      }
+      else{
+        this.ExternalList[this.myIter]!=undefined? this.Api(this.ExternalList[this.extIter],2) : {}
+        this.extIter++
+      }
+    },
   },
 }
 </script>
