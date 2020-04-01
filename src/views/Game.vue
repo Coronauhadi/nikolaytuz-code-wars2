@@ -35,7 +35,9 @@
 
 							<div :class="'pers1 '+pers1.animated" :style="pers1.pos" >
                 <img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
-								<img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 " style="" alt="">
+							</div>
+              <div :class="'pers1 '+pers1.animated" :style="bullet.pos" >
+                <img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 bul" style="" alt="">
 							</div>
 
               <div :class="'pers1 '+  pers2.animated" :style="pers2.pos" >
@@ -75,6 +77,12 @@
     z-index: 99;
   }
 
+
+  .bul{
+    position: absolute;
+    top: 69%;
+    right: 38%;
+  }
   .sub-debug{
     bottom: 12px;
     right: 120px;
@@ -166,6 +174,8 @@ export default {
         else if(arg=='l' || arg=='left') this.rotate('l',id);}
       command.substring(0,3)=='aim'? this.aim(id,enemyId) : {}
       command.substring(0,3)=='end'? this.terminate() : {}
+      command.substring(0,4)=='shot'? this.shot() : {}
+
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -224,6 +234,12 @@ export default {
     else{ angle -= 90}
     this.rotateByAngle(angle,idCaller)
   },
+  shot: function() {
+    let cor1 = this.getCoords(document.getElementById("x"+this.pers1.cor.x+"y"+this.pers1.cor.y))
+    // let cor2 = this.getCoords(document.getElementById("x"+this.pers2.cor.x+"y"+this.pers2.cor.y))
+    this.bullet.pos.top = cor1.top+'px'
+    this.bullet.pos.left = cor1.left+'px'
+  },
 	rotate: function(dir,id){
 		if(dir == 'l'){
 			this["pers"+id].direction = (this["pers"+id].direction == 0)? 3 : (this["pers"+id].direction-1) % 4
@@ -262,6 +278,11 @@ export default {
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                 direction: 0,
                 startDirection: 0,
+              },
+              bullet: {
+                show: true,
+                anim: 'anim',
+                pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
               },
               x: 17,
               y: 17,
