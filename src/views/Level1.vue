@@ -6,9 +6,11 @@
 							<!-- <textarea v-model='List' id="my-textarea" class="h-100 w-100 elegant-color-dark border-none text-white p-3" style="border:none"   name="text" placeholder="// поехали!"></textarea> -->
 							<!-- <button type="button" class="sub" @click="exec" name="button">√</button> -->
 					<!-- </div> -->
-          <button type="button" class="sub-debug btn btn-black" @click="execDebug()" name="button-debug"> |> </button>
-          <button type="button" class="sub-stop btn btn-black" @click="terminate()" name="button-stop"> stop </button>
-          <button type="button" class="sub-pom btn btn-black " @click="info=!info" name=""> Помощь </button>
+          <div class="sub-debug">
+            <button type="button" class=" btn btn-black" @click="execDebug()" name="button-debug"> |> </button>
+            <button type="button" class=" btn btn-black" @click="terminate()" name="button-stop"> stop </button>
+            <button type="button" class=" btn btn-black " @click="info=!info" name=""> Помощь </button>
+          </div>
 
           <Iterator :List1='List' :Api="Api" :Step='step' :List2='EnemyList'/>
 
@@ -79,9 +81,9 @@
         <div class="info elegant-color-dark " v-if="info">
           <div class="container-fluid py-5">
             <div class="row">
-              <div class="col-11 white mx-auto p-5">
+              <div class="col-11 white mx-auto p-3 py-5">
                 <h1>#Команды для управления персонажем</h1>
-                <p class="lead"> Помните, что команды разделяются переносом строки (клавиша Enter), в одной строке не может быть больше одной команды!</p>
+                <p class=""> Помните, что команды разделяются переносом строки (клавиша Enter), в одной строке не может быть больше одной команды!</p>
                 <p class=""><b>makestep()</b> - Эта команда позволит сделать шаг в том направлении, в котором смотрит персонаж</p>
                 <p class=""><b>rotate(r)</b> или <b>rotate(l)</b> - Эта команда повзволит вашему персонажу повернуться. В зависимости от параметра l или r, персонаж повернет влево или вправо</p>
                 <p class=""><b>for(х)</b> - А что если надо сделать несколько шагов. Эта функция говорит сколько раз выполнить следующую команду.
@@ -159,7 +161,7 @@
 
   .sub-debug{
     bottom: 12px;
-    right: 30px;
+    right: 2%;
     position: fixed;
     font: 17px Arial;
     border-radius: 10px;
@@ -176,7 +178,7 @@
 
   .pers1{
     position: fixed;
-    z-index: 99;
+    z-index: 9;
   }
   .razm{
     height: 20px!important;
