@@ -76,10 +76,10 @@
           </div>
         </div>
 
-        <div class="info elegant-color-dark  " v-if="info">
-          <div class="container">
+        <div class="info elegant-color-dark " v-if="info">
+          <div class="container-fluid py-5">
             <div class="row">
-              <div class="col-10 white mx-auto p-5 mt-5">
+              <div class="col-11 white mx-auto p-5">
                 <h1>#Команды для управления персонажем</h1>
                 <p class="lead"> Помните, что команды разделяются переносом строки (клавиша Enter), в одной строке не может быть больше одной команды!</p>
                 <p class=""><b>makestep()</b> - Эта команда позволит сделать шаг в том направлении, в котором смотрит персонаж</p>
@@ -100,6 +100,7 @@
 
 <style scoped>
   .info{
+    overflow: auto;
     top:0;
     left: 0;
     position: fixed;

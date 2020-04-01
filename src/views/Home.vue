@@ -15,6 +15,13 @@
           <div class=" " v-if="prodshow">
             <button  class="btn btn-elegant w-50" @click="nextpage(hlevel)" name="button">Продолжить</button>
           </div>
+          <div class="text-center mt-3">
+            <!-- <a href="#" class=""><div class="w-25 mx-auto" style="background: url(/res/cherepaha.jpg); height:25vh;"></div> </a> -->
+
+            <a href="https://vk.com/nikolaytuz" target="_blank"><img src="/res/punk1.jpg" class="w-25"   alt=""></a>
+            <a href="https://vk.com/khmhmm" target="_blank"><img src="/res/pun.jpg" class="w-25"  alt=""></a>
+
+          </div>
           <!-- <div class=" ">
             <a  class="btn btn-white w-25" href="/#/" name="button">Об игре</a>
           </div>

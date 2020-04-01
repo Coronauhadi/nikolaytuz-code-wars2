@@ -47,8 +47,8 @@
                 <img src="/res/sprites/characters/biker/bike_aim.png" class="w-100 " alt="">
               </div>
 
-              <div :class="'winbox'" :style="winbox.pos" >
-                <img src="/res/sprites/other/flag.png" class="flag " alt="">
+              <div :class="'winbox razm '" :style="winbox.pos" >
+                <img src="/res/sprites/other/flag.png" class="flag w-100" alt="">
               </div>
 
 							<div class="row ">
@@ -64,9 +64,9 @@
 				</div>
 
         <div class="info elegant-color-dark  " v-if="info">
-          <div class="container py-5">
+          <div class="container-fluid py-5">
             <div class="row">
-              <div class="col-10 white mx-auto p-5 ">
+              <div class="col-11 white mx-auto p-5 ">
                 <h1>#Команды для управления персонажем</h1>
                 <p class="lead"> Давайте посмотрим, что такого особенного в программировании, чего можно достичь с его помощью.</p>
                 <p class=""><b>makestep()</b> - Эта команда позволит сделать шаг в том направлении, в котором смотрит персонаж</p>
@@ -135,14 +135,14 @@
   .sub-pom{
     position: fixed;
     bottom: 12px;
-    right: 360px;
+    right: 230px;
     z-index: 99;
     border-radius: 10px;
   }
 
   .sub-debug{
     bottom: 12px;
-    right: 120px;
+    right: 30px;
     position: fixed;
     font: 17px Arial;
     border-radius: 10px;
@@ -151,7 +151,7 @@
 
   .sub-stop{
     bottom: 12px;
-    right: 230px;
+    right: 120px;
     position: fixed;
     border-radius: 10px;
     z-index: 99;
@@ -190,7 +190,7 @@
   .windiv{
     position: fixed;
     top: 25%;
-    right: 12%%;
+    right: 12%;
     width: 75%;
     z-index: 999;
   }
