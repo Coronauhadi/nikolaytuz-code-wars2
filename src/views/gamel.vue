@@ -1,9 +1,34 @@
 <template >
   <div class="gams">
-    <level :level="level"   />
+    <level :level="level"  :win="win"  />
+
+    <div class="win" v-if="winer">
+      <div  class="windiv rgba-black-strong border text-white text-center py-5">
+        <h2>Поздравляем вы прошли уровень</h2>
+        <button type="button" class="btn btn-white" name="button">Перейти на следующий</button>
+      </div>
+    </div>
   </div>
 </template>
 
+
+<style media="screen">
+  .win{
+    position: fixed;
+    top: 0;
+    right: 0%;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+  }
+  .windiv{
+    position: fixed;
+    top: 25%;
+    right: 25%;
+    width: 50%;
+    z-index: 999;
+  }
+</style>
 
 <script>
 // @ is an alias to /src
@@ -14,11 +39,19 @@ export default {
   components: {
     level
   },
+  mounted(){
+    if (localStorage.levcont) {
+      this.levcont = localStorage.levcont;
+    }
+  },
   data: ()=>{
     return {
       levcont: 1,
-      win: false,
-      index: 0,
+      winer: true,
+      index: -1,
+      level:{
+
+      },
       levels: [
         {
           walls: [],
@@ -39,7 +72,6 @@ export default {
           enemyList : 'makestep()\nrotate(l)\nmakestep()\nrotate(r)\nmakestep()\nrotate(l)\nmakestep()\nrotate(r)\nfor(3)makestep()\nrotate(l)\nfor(4)makestep()\nrotate(r)\nmakestep()\nconquer()',
         }
       ],
-      level: this.levels[0],
     }
   },
   methods: {
