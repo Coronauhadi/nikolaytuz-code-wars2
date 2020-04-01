@@ -18,10 +18,7 @@ export default {
     return {
       levcont: 1,
       win: false,
-      index: -1,
-      level:{
-
-      },
+      index: 0,
       levels: [
         {
           walls: [],
@@ -41,7 +38,8 @@ export default {
           flagCor : {'x': 10, 'y': 10},
           enemyList : 'makestep()\nrotate(l)\nmakestep()\nrotate(r)\nmakestep()\nrotate(l)\nmakestep()\nrotate(r)\nfor(3)makestep()\nrotate(l)\nfor(4)makestep()\nrotate(r)\nmakestep()\nconquer()',
         }
-      ]
+      ],
+      level: this.levels[0],
     }
   },
   methods: {
