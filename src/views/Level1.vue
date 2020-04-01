@@ -48,11 +48,7 @@
 							<div class="row ">
 								<div class="col">
 									<hr class="mb-1 elegant-color-dark">
-                  <h3>{{this.step}} шаг</h3>
-									<h3></h3>
-									<ul>
-										<li></li>
-									</ul>
+                  <h3>{{this.step+1}} шаг</h3>
 								</div>
 							</div>
 						</div>
