@@ -35,7 +35,9 @@
 
 							<div :class="'pers1 '+pers1.animated" :style="pers1.pos" >
                 <img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
-								<img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 bul" style="" alt="">
+							</div>
+              <div :class="'pers1 '+pers1.animated" :style="bullet.pos" >
+                <img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 bul" style="" alt="">
 							</div>
 
               <div :class="'pers1 '+  pers2.animated" :style="pers2.pos" >
@@ -75,12 +77,12 @@
     z-index: 99;
   }
 
-<<<<<<< HEAD
+
   .bul{
     position: absolute;
     top: 69%;
     right: 38%;
-=======
+  }
   .sub-debug{
     bottom: 12px;
     right: 120px;
@@ -107,7 +109,6 @@
     border: solid #111 6px;
     border-radius: 10px;
     z-index: 99;
->>>>>>> a244e99fb05f9bac115c0d9f87eb3085f0654fa5
   }
 
   .pers1{
@@ -144,9 +145,6 @@ export default {
    };
   },
   methods:{
-<<<<<<< HEAD
-
-=======
     exec: function(){
       //do this.step++ while step!=-1 or something?
     },
@@ -165,32 +163,10 @@ export default {
       this.pers2.direction = this.pers2.startDirection
       this.pers2.pos.transform = 'rotate(' + String(Math.round(this.pers2.direction * 90)) + 'deg)'
     },
->>>>>>> a244e99fb05f9bac115c0d9f87eb3085f0654fa5
     Api: function(command,id){
       let arg = 0
       arg
       let enemyId = (id==1)? 2 : 1
-<<<<<<< HEAD
-      switch(command.substring(0,4))
-      {
-      case 'make':
-        this.addshg(id)
-        break;
-
-      case 'rota':
-      if(arg=='r'){ this.rotate('r',id) }
-      else if(arg=='l'){ this.rotate('l',id) }
-      else return
-      break
-
-      case 'aim(':
-      this.aim(id,enemyId)
-      break
-
-      default:
-      return
-      }
-=======
       command.substring(0,8)=='makestep'? this.addshg(id) : {}
       console.log(command.substring(0,6))
       if(command.substring(0,6)=='rotate'){ arg = command.substring(7,command.length-1); console.log(arg)
@@ -198,7 +174,8 @@ export default {
         else if(arg=='l' || arg=='left') this.rotate('l',id);}
       command.substring(0,3)=='aim'? this.aim(id,enemyId) : {}
       command.substring(0,3)=='end'? this.terminate() : {}
->>>>>>> a244e99fb05f9bac115c0d9f87eb3085f0654fa5
+      command.substring(0,4)=='shot'? this.shot() : {}
+
     },
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
@@ -257,6 +234,12 @@ export default {
     else{ angle -= 90}
     this.rotateByAngle(angle,idCaller)
   },
+  shot: function() {
+    let cor1 = this.getCoords(document.getElementById("x"+this.pers1.cor.x+"y"+this.pers1.cor.y))
+    // let cor2 = this.getCoords(document.getElementById("x"+this.pers2.cor.x+"y"+this.pers2.cor.y))
+    this.bullet.pos.top = cor1.top+'px'
+    this.bullet.pos.left = cor1.left+'px'
+  },
 	rotate: function(dir,id){
 		if(dir == 'l'){
 			this["pers"+id].direction = (this["pers"+id].direction == 0)? 3 : (this["pers"+id].direction-1) % 4
@@ -295,6 +278,11 @@ export default {
                 pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
                 direction: 0,
                 startDirection: 0,
+              },
+              bullet: {
+                show: true,
+                anim: 'anim',
+                pos: {"top": "1px", "left":"1px", "transform": "rotate(0 deg)",},
               },
               x: 17,
               y: 17,
