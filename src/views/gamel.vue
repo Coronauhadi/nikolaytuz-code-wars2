@@ -16,11 +16,17 @@ export default {
   },
   data: ()=>{
     return {
-      level: 1,
+      levcont: 1,
       win: false,
-      level1:{
-        
+      level:{
+
       },
+      levels: [
+        {
+          walls: [],
+
+        }
+      ]
     }
   },
   methods: {
