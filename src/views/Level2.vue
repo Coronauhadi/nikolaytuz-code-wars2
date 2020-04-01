@@ -58,7 +58,6 @@
 
 				</div>
 
-        <div class="win" v-if="winer">
           <div class="win" v-if="winer">
             <div  class="windiv rgba-black-strong border text-white text-center py-5">
               <h2>Поздравляем вы прошли игру</h2>

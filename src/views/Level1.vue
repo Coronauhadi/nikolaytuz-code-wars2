@@ -57,12 +57,13 @@
 
 				</div>
 
-        <div  class="windiv rgba-black-strong border text-white text-center py-5">
-          <h2>Поздравляем вы прошли уровень</h2>
-          <a href="/#/Level2" class="btn btn-white" >Перейти на следующий</a>
+        <div class="win" v-if="winer">
+          <div  class="windiv rgba-black-strong border text-white text-center py-5">
+            <h2>Поздравляем вы прошли уровень</h2>
+              <a href="/#/Level2" class="btn btn-white" >Перейти на следующий</a>
+          </div>
         </div>
-      </div>
-        
+
         <div class="win" v-if="loss">
           <div  class="windiv rgba-black-strong border text-white text-center py-5">
             <h2>Вы проиграли</h2>
@@ -71,7 +72,7 @@
         </div>
 
         <div class="info" v-show="info">
-
+          
         </div>
   </div>
 </template>
