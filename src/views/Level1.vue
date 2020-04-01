@@ -13,11 +13,12 @@
           <Iterator :List1='List' :Api="Api" :Step='step' :List2='EnemyList'/>
 
 					<div class="col-12 ">
-            <div class="">
-              <textarea v-model='List' id="my-textarea" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none"   name="text" placeholder="# поехали!"></textarea>
+            <div class="divtextar" :style="fokus?'height:80vh; width:80%':''">
+              <textarea v-model='List' id="my-textarea" @focus="fokus=true" @blur="fokus=false" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none "   name="text" placeholder="# поехали!"></textarea>
+              <!-- <span v-show="fokus">FOCUSED</span> -->
             </div>
 
-						<div class="">
+						<div class="" style="margin-top:110px;">
 
 							<div class="container-fluid">
 								<div class="row">
@@ -107,6 +108,13 @@
     z-index: 9999;
 
 
+  }
+  .divtextar{
+    position: absolute;
+    left:0;
+    height: 100px;
+    width: 100%;
+    z-index: 1000;
   }
 /*
     .sub{
@@ -358,6 +366,7 @@ export default {
               winer: false,
               loss: false,
               info: false,
+              fokus: false,
               pers2: {
                 animated: ["anim"],
                 cor:{'x': 8, 'y': 8},

@@ -14,11 +14,11 @@
           <Iterator :List1='List' :Api="Api" :Step='step' :List2='EnemyList'/>
 
 					<div class="col-12 ">
-            <div class="">
-              <textarea v-model='List' id="my-textarea" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none"   name="text" placeholder="# как бы мне тут всё испортить"></textarea>
+            <div class="divtextar" :style="fokus?'height:80vh; width:80%':''">
+              <textarea v-model='List' id="my-textarea" @focus="fokus=true" @blur="fokus=false" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none "   name="text" placeholder="# Hello world!"></textarea>
             </div>
 
-						<div class="">
+						<div class="" style="margin-top:110px;">
 
 							<div class="container-fluid">
 								<div class="row">
@@ -64,9 +64,9 @@
 				</div>
 
         <div class="info elegant-color-dark  " v-if="info">
-          <div class="container">
+          <div class="container py-5">
             <div class="row">
-              <div class="col-10 white mx-auto p-5 mt-5">
+              <div class="col-10 white mx-auto p-5 ">
                 <h1>#Команды для управления персонажем</h1>
                 <p class="lead"> Давайте посмотрим, что такого особенного в программировании, чего можно достичь с его помощью.</p>
                 <p class=""><b>makestep()</b> - Эта команда позволит сделать шаг в том направлении, в котором смотрит персонаж</p>
@@ -105,8 +105,16 @@
   height: 100vh;
   width: 100%;
   z-index: 9999;
+  overflow: auto;
 
 
+}
+.divtextar{
+  position: absolute;
+  left:0;
+  height: 100px;
+  width: 100%;
+  z-index: 1000;
 }
 /*
     .sub{
@@ -395,6 +403,7 @@ export default {
               },
               info: false,
               winer: false,
+              fokus: false,
               loss: false,
               x: 17,
               y: 17,
