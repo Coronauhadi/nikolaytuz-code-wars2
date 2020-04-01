@@ -250,9 +250,6 @@ export default {
 		else if(dir == 'r'){
 			this["pers"+id].direction = Math.abs((this["pers"+id].direction +1) % 4)
 		}
-		else{
-			return;
-		}
 		this["pers"+id].pos.transform = 'rotate(' + String(Math.round(this["pers"+id].direction * 90)) + 'deg)'
 	},
   whoIs: function(x,y){
