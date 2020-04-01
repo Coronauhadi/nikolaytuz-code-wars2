@@ -29,10 +29,12 @@ const routes = [
   {
     path: '/Level2',
     name: 'Level2',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Level2.vue')
+  },
+  {
+    path: '/gamel',
+    name: 'gamel',
+    component: () => import('../views/gamel.vue')
   }
 ]
 
