@@ -1,6 +1,6 @@
 <template >
   <div class="gams">
-    <level :level="level"  :win="win"  />
+    <lev :level="level"  :win="win()"  />
 
     <div class="win" v-if="winer">
       <div  class="windiv rgba-black-strong border text-white text-center py-5">
@@ -32,25 +32,32 @@
 
 <script>
 // @ is an alias to /src
-import level from '@/components/level.vue'
+import lev from '@/components/level.vue'
 
 export default {
   name: 'gamel',
   components: {
-    level
+    lev
   },
   mounted(){
     if (localStorage.levcont) {
       this.levcont = localStorage.levcont;
     }
+    this.level = this.levels[this.levcont-1]
   },
   data: ()=>{
     return {
       levcont: 1,
-      winer: true,
+      winer: false,
       index: -1,
       level:{
-
+        walls: [],
+        pers1Startcor :  {'x':2, 'y': 2},
+        pers1Startdir : 0,
+        pers2Startcor : {'x': 8, 'y': 8},
+        pers2Startdir : 0,
+        flagCor : {'x': 5, 'y': 5},
+        enemyList :  'rotate(l)\nfor(4)makestep()\nrotate(r)\nmakestep()\nrotate(r)\nmakestep()\nrotate(r)\nfor(4)makestep()\nconquer()',
       },
       levels: [
         {

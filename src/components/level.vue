@@ -150,9 +150,11 @@ export default {
   created: function() {
     this.createWalls()
     this.addtables()
-    this.updLvlInfo
   },
   mounted: function() {
+
+    this.updLvlInfo()
+
     this.setcoor()
     // this.pers1.animated.push("anim")
     window.onresize = () => {
@@ -170,22 +172,23 @@ export default {
       this.setstartDirection()
       this.winCounter = 0
     },
-    updLvlInfo(){
-      this.pers1.startcoords = this.level.pers1startcoor
-      this.pers2.startcoords = this.level.pers2startcoor
+    updLvlInfo: function(){
+      console.log("уровень подгрулся")
+      this.pers1.startcoords = this.level.pers1Startcor
+      this.pers2.startcoords = this.level.pers2Startcor
       this.pers1.startDirection = this.level.pers1Startdir
       this.pers2.startDirection = this.level.pers2Startdir
       this.winbox.cor = this.level.flagCor
       this.enemyList = this.level.enemyList
+      console.log(this.level)
       this.setstartcoor()
       this.setstartDirection()
-      console.log(this.level)
     },
     Api: function(command,id){
       let arg = 0
       let enemyId = (id==1)? 2 : 1
       if(this.winCounter>0){
-        alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
+        // alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
         this.win()
         this.updLvlInfo()
         return
@@ -239,6 +242,7 @@ export default {
 
     },
     setstartcoor: function(){
+      console.log(this.pers1);
       this.pers1.cor.x = this.pers1.startcoords.x
       this.pers1.cor.y = this.pers1.startcoords.y
       this.pers2.cor.x = this.pers2.startcoords.x
@@ -363,6 +367,7 @@ export default {
             }
   },
   watch: {
+
     windowHeight: function (val) {
       val
       this.setcoor()

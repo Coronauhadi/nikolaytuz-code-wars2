@@ -60,6 +60,19 @@
 
 
 				</div>
+
+        <div class="win" v-if="winer">
+          <div  class="windiv rgba-black-strong border text-white text-center py-5">
+            <h2>Поздравляем вы прошли игру</h2>
+            <a href="/#/" class="btn btn-white" >Поздавить себя</a>
+          </div>
+        </div>
+        <div class="win" v-if="loss">
+          <div  class="windiv rgba-black-strong border text-white text-center py-5">
+            <h2>Вы проиграли</h2>
+            <button @click="terminate()" class="btn btn-white" >Начать сначала</button>
+          </div>
+        </div>
   </div>
 </template>
 
@@ -80,6 +93,22 @@
     z-index: 99;
   }
 */
+
+  .win{
+    position: fixed;
+    top: 0;
+    right: 0%;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+  }
+  .windiv{
+    position: fixed;
+    top: 25%;
+    right: 25%;
+    width: 50%;
+    z-index: 999;
+  }
 
   .sub-debug{
     bottom: 12px;
@@ -142,6 +171,8 @@ export default {
     this.addtables()
   },
   mounted: function() {
+    localStorage.level = 1
+
     this.setcoor()
     // this.pers1.animated.push("anim")
     window.onresize = () => {
@@ -168,12 +199,21 @@ export default {
       this.pers2.direction = this.pers2.startDirection
       this.pers2.pos.transform = 'rotate(' + String(Math.round(this.pers2.direction * 90)) + 'deg)'
       this.winCounter = 0
+      this.loss = false
     },
     Api: function(command,id){
       let arg = 0
       let enemyId = (id==1)? 2 : 1
       if(this.winCounter>0){
-        alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
+
+
+        if(this.whoIs(this.winbox.cor.x,this.winbox.cor.y)==1){
+          this.winer = true
+          localStorage.level = 2
+        }else{
+          this.loss = true
+        }
+        // alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
         return
       }
       command.substring(0,8)=='makestep'? this.addshg(id) : {}
@@ -287,6 +327,8 @@ export default {
                 direction: 0,
                 startDirection: 0,
               },
+              winer: false,
+              loss: false,
               pers2: {
                 animated: ["anim"],
                 cor:{'x': 8, 'y': 8},

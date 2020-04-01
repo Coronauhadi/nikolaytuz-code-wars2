@@ -31,11 +31,11 @@ const routes = [
     name: 'Level2',
     component: () => import('../views/Level2.vue')
   },
-  {
-    path: '/gamel',
-    name: 'gamel',
-    component: () => import('../views/gamel.vue')
-  }
+  // {
+  //   path: '/gamel',
+  //   name: 'gamel',
+  //   component: () => import('../views/gamel.vue')
+  // }
 ]
 
 const router = new VueRouter({

@@ -61,7 +61,21 @@
 
 
 				</div>
-  </div>
+
+        <div class="win" v-if="winer">
+          <div  class="windiv rgba-black-strong border text-white text-center py-5">
+            <h2>Поздравляем вы прошли уровень</h2>
+            <a href="/#/Level2" class="btn btn-white" >Перейти на следующий</a>
+          </div>
+        </div>
+        <div class="win" v-if="loss">
+          <div  class="windiv rgba-black-strong border text-white text-center py-5">
+            <h2>Вы проиграли</h2>
+            <button @click="terminate()" class="btn btn-white" >Начать сначала</button>
+          </div>
+        </div>
+      </div>
+  <!-- </div> -->
 </template>
 
 
@@ -131,6 +145,22 @@
     width: 4vh;
   }
 
+  .win{
+    position: fixed;
+    top: 0;
+    right: 0%;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+  }
+  .windiv{
+    position: fixed;
+    top: 25%;
+    right: 25%;
+    width: 50%;
+    z-index: 999;
+  }
+
 </style>
 
 
@@ -164,12 +194,20 @@ export default {
       this.setstartcoor()
       this.setstartDirection()
       this.winCounter = 0
+      this.loss = false
+
     },
     Api: function(command,id){
       let arg = 0
       let enemyId = (id==1)? 2 : 1
       if(this.winCounter>0){
-        alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
+        if(this.whoIs(this.winbox.cor.x,this.winbox.cor.y)==1){
+          this.winer = true
+          localStorage.level = 2
+        }else{
+          this.loss = true
+        }
+        // alert('Player' + this.whoIs(this.winbox.cor.x,this.winbox.cor.y) + ' has won')
         return
       }
       command.substring(0,8)=='makestep'? this.addshg(id) : {}
@@ -329,6 +367,8 @@ export default {
                 direction: 0,
                 startDirection: 0,
               },
+              winer: false,
+              loss: false,
               x: 17,
               y: 17,
               winbox: {
