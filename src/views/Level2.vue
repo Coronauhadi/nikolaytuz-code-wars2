@@ -15,7 +15,7 @@
 
 					<div class="col-12 ">
             <div class="divtextar" :style="fokus?'height:80vh; width:80%':''">
-              <textarea v-model='List' id="my-textarea" @focus="fokus=true" @blur="fokus=false" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none "   name="text" placeholder="// поехали!"></textarea>
+              <textarea v-model='List' id="my-textarea" @focus="fokus=true" @blur="fokus=false" class=" h-100 w-100 elegant-color-dark border-none text-white p-3 " style="border:none "   name="text" placeholder="# Hello world!"></textarea>
             </div>
 
 						<div class="" style="margin-top:110px;">
