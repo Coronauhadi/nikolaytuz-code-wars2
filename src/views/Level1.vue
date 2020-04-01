@@ -179,8 +179,8 @@
     z-index: 999;
   }
   .razm{
-    height: 30px!important;
-    width: 30px!important;
+    height: 20px!important;
+    width: 20px!important;
   }
 
   .winbox{
