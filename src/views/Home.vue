@@ -1,15 +1,19 @@
 <template>
-  <div class="container-fluid poln  text-white">
-    <div class="row">
-      <div class="col ">
-        <div class="text-center mt-5 w-50 mx-auto elegant-color bor py-5"  style="height:40vh">
-          <h1><b>Игра обучающая программированию</b> </h1>
+  <div class="container-fluid elegant-color poln  " >
+    <div class="row  " >
+      <div class="col-12 h-100">
+        <div class="text-center ">
+          <img src="/res/katalog_woutgr.png" class="" style="height:200px" alt="">
+          <!-- <img src="/res/katalog_woutgr.png" class="" style="height:200px" alt=""> -->
+        </div>
+        <div class="text-center h-100 mx-auto white bor py-5"  style="">
+          <h1><b>CODE-WARS</b> </h1>
 
           <div class=" mt-5">
-            <a  class="btn btn-white w-25" href="/#/Level1/" name="button">Начать</a>
+            <a  class="btn btn-elegant w-50" href="/#/Level1/" name="button">Начать</a>
           </div>
           <div class=" " v-if="prodshow">
-            <a  class="btn btn-white w-25" :href="hlevel" name="button">Продолжить</a>
+            <a  class="btn btn-elegant w-50" :href="hlevel" name="button">Продолжить</a>
           </div>
           <!-- <div class=" ">
             <a  class="btn btn-white w-25" href="/#/" name="button">Об игре</a>
@@ -18,6 +22,10 @@
             <a  class="btn btn-white w-25" href="/#/" name="button">Выход</a>
           </div> -->
         </div>
+        <!-- <div class="text-center">
+          <img src="/res/katalog_woutgr.png" class="" style="height:200px" alt="">
+          <img src="/res/katalog_woutgr.png" class="" style="height:200px" alt="">
+        </div> -->
       </div>
     </div>
   </div>
