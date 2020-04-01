@@ -33,7 +33,7 @@
 
 							<div :class="'pers1 '+pers1.animated" :style="pers1.pos" >
                 <img src="/res/sprites/characters/amazonka/amazonka_idle.png" class="w-100 " alt="">
-								<img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 " style="" alt="">
+								<img src="/res/sprites/weapon/pistol/bullet.png" class="w-25 bul" style="" alt="">
 							</div>
 
               <div :class="'pers1 '+  pers2.animated" :style="pers2.pos" >
@@ -73,6 +73,11 @@
     z-index: 99;
   }
 
+  .bul{
+    position: absolute;
+    top: 69%;
+    right: 38%;
+  }
 
   .pers1{
     position: fixed;
@@ -108,29 +113,7 @@ export default {
    };
   },
   methods:{
-<<<<<<< HEAD
-    Api: function(command){
-      comand=="makestep()"?this.addshg(2):''
-      let arg = command.substring(7,8)
-      switch(command.substring(0,6)){
-      case 'makest':
-        this.addshg()
-        break;
 
-      case 'rotate':
-      if(arg=='r'){ this.rotate('r') }
-      else if(arg=='l'){ this.rotate('l') }
-      else return
-      break
-
-      default:
-        return
-      },
-=======
-<<<<<<< HEAD
-    Api: function(comand) {
-      comand=="makestep()"?this.addshg(2):''
-=======
     Api: function(command,id){
       let arg = command.substring(5,6)
       let enemyId = (id==1)? 2 : 1
@@ -153,9 +136,7 @@ export default {
       default:
       return
       }
->>>>>>> 1fce2772282d41862fd3e85ed013d1f5b42fedcb
     },
->>>>>>> 705b120fa2ed8a0dac749ac31ee6b7a15bb7388a
     addtables: function() {
       for (var i = 0; i < this.y; i++) {
         let a = []
