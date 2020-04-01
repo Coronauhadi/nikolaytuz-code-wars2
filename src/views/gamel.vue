@@ -19,7 +19,7 @@ export default {
       level: 1,
       win: false,
       level1:{
-        
+
       },
     }
   },
