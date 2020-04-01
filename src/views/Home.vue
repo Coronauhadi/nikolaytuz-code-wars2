@@ -10,10 +10,10 @@
           <h1><b>CODE-WARS</b> </h1>
 
           <div class=" mt-5">
-            <a  class="btn btn-elegant w-50" href="/#/Level1/" name="button">Начать</a>
+            <button  class="btn btn-elegant w-50" @click="nextpage('Level1')" name="button">Начать</button>
           </div>
           <div class=" " v-if="prodshow">
-            <a  class="btn btn-elegant w-50" :href="hlevel" name="button">Продолжить</a>
+            <button  class="btn btn-elegant w-50" @click="nextpage(hlevel)" name="button">Продолжить</button>
           </div>
           <!-- <div class=" ">
             <a  class="btn btn-white w-25" href="/#/" name="button">Об игре</a>
@@ -47,18 +47,21 @@ export default {
   name: 'Home',
   components: {
   },
+  props: {
+    nextpage: Function,
+  },
   mounted (){
     if (localStorage.level) {
       this.level = localStorage.level
       this.prodshow = true
-      this.hlevel = "/#/Level"+this.level+"/"
+      this.hlevel = "Level"+this.level
     }
    },
    data(){
      return {
        level: 1,
        prodshow: false,
-       hlevel: "/#/Level1/"
+       hlevel: "Level2"
      }
    },
   watch: {
