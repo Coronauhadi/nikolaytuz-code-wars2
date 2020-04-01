@@ -151,14 +151,14 @@
   .sub-pom{
     position: fixed;
     bottom: 12px;
-    right: 360px;
+    right: 230px;
     z-index: 99;
     border-radius: 10px;
   }
 
   .sub-debug{
     bottom: 12px;
-    right: 120px;
+    right: 30px;
     position: fixed;
     font: 17px Arial;
     border-radius: 10px;
@@ -167,7 +167,7 @@
 
   .sub-stop{
     bottom: 12px;
-    right: 230px;
+    right: 120px;
     position: fixed;
     border-radius: 10px;
     z-index: 99;
