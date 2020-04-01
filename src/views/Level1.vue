@@ -57,23 +57,31 @@
 
 				</div>
 
-        <div class="win" v-if="winer">
-          <div  class="windiv rgba-black-strong border text-white text-center py-5">
-            <h2>Поздравляем вы прошли игру</h2>
-            <a href="/#/" class="btn btn-white" >Поздавить себя</a>
-          </div>
+        <div  class="windiv rgba-black-strong border text-white text-center py-5">
+          <h2>Поздравляем вы прошли уровень</h2>
+          <a href="/#/Level2" class="btn btn-white" >Перейти на следующий</a>
         </div>
+      </div>
+        
         <div class="win" v-if="loss">
           <div  class="windiv rgba-black-strong border text-white text-center py-5">
             <h2>Вы проиграли</h2>
             <button @click="terminate()" class="btn btn-white" >Начать сначала</button>
           </div>
         </div>
+
+        <div class="info" v-show="info">
+
+        </div>
   </div>
 </template>
 
 
 <style media="screen">
+  .info{
+    position: fixed;
+
+  }
 /*
     .sub{
     bottom: 12px;
@@ -325,6 +333,7 @@ export default {
               },
               winer: false,
               loss: false,
+              info: false,
               pers2: {
                 animated: ["anim"],
                 cor:{'x': 8, 'y': 8},
